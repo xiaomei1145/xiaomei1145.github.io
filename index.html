@@ -10,16 +10,30 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            transition: background-color 0.5s, color 0.5s;
         }
 
         img {
             max-width: 100%;
             max-height: 100%;
         }
+
+        /* 晚上防亮瞎眼样式 */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
     </style>
     <title>1145</title>
 </head>
 <body>
-    <img src="/1145.png" alt="先辈">
+    <img src="1145.png" alt="先辈">
+    
+    <script>
+        // 检测首选主题设置
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
 </body>
 </html>
