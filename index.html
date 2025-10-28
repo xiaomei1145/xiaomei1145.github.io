@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            overflow: hidden;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoPlayer"></video>
+    
+    <script>
+        // 视频文件列表
+        const videos = [
+            'video/1.mp4'
+            // 在这里添加更多视频文件路径
+        ];
+        
+        const videoPlayer = document.getElementById('videoPlayer');
+        let currentIndex = -1;
+        
+        // 随机播放视频
+        function playRandomVideo() {
+            const randomIndex = Math.floor(Math.random() * videos.length);
+            currentIndex = randomIndex;
+            videoPlayer.src = videos[randomIndex];
+            videoPlayer.play();
+        }
+        
+        // 视频结束后播放下一个随机视频
+        videoPlayer.addEventListener('ended', playRandomVideo);
+        
+        // 页面加载后自动全屏并播放
+        window.addEventListener('load', function() {
+            playRandomVideo();
+            
+            // 尝试进入全屏
+            videoPlayer.addEventListener('canplay', function() {
+                if (videoPlayer.requestFullscreen) {
+                    videoPlayer.requestFullscreen();
+                } else if (videoPlayer.webkitRequestFullscreen) {
+                    videoPlayer.webkitRequestFullscreen();
+                } else if (videoPlayer.msRequestFullscreen) {
+                    videoPlayer.msRequestFullscreen();
+                }
+            }, { once: true });
+        });
+        
+        // 点击视频时进入全屏（如果自动全屏失败）
+        videoPlayer.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                if (videoPlayer.requestFullscreen) {
+                    videoPlayer.requestFullscreen();
+                } else if (videoPlayer.webkitRequestFullscreen) {
+                    videoPlayer.webkitRequestFullscreen();
+                } else if (videoPlayer.msRequestFullscreen) {
+                    videoPlayer.msRequestFullscreen();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
