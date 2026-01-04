@@ -1,80 +1,101 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>baka</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome to Xiaomei Page</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            overflow: hidden;
-            background: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        video {
-            width: 100vw;
-            height: 100vh;
-            object-fit: contain;
-        }
+      body {
+        background-color: #f88b9e;
+        color: #ffffff;
+        font-family: "Tahoma", "Verdana", "Arial", sans-serif;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        background: linear-gradient;
+        border-bottom: 2px solid #ad7560;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-style: italic;
+        text-shadow: 2px 2px #000;
+        color: #e03a07;
+        letter-spacing: 2px;
+      }
+
+      .main-container {
+        width: 950px;
+        margin: 10px auto;
+        border-collapse: collapse;
+        background-color: #f72749;
+      }
+
+      .sidebar {
+        width: 180px;
+        vertical-align: top;
+        background-color: #ad7560;
+        border: 1px solid #ad7560;
+      }
+
+      .sidebar-header {
+        background-color: #ad7560;
+        color: #fff;
+        padding: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-bottom: 1px solid #f88b9e;
+      }
+
+      .content {
+        padding: 15px;
+        vertical-align: top;
+        border: 1px solid #f88b9e;
+      }
+
+      .XX-box {
+        border: 1px solid #f88b9e;
+        background-color: #f88b9e;
+        margin-bottom: 20px;
+      }
+
+      .XX-title {
+        background-color: #f88b9e;
+        padding: 5px 10px;
+        font-weight: bold;
+        color: #ffffff;
+      }
     </style>
-</head>
-<body>
-    <video id="videoPlayer"></video>
-    
-    <script>
-        // 视频文件列表
-        const videos = [
-            'video/1.mp4'
-            // 在这里添加更多视频文件路径
-        ];
-        
-        const videoPlayer = document.getElementById('videoPlayer');
-        let currentIndex = -1;
-        
-        // 随机播放视频
-        function playRandomVideo() {
-            const randomIndex = Math.floor(Math.random() * videos.length);
-            currentIndex = randomIndex;
-            videoPlayer.src = videos[randomIndex];
-            videoPlayer.play();
-        }
-        
-        // 视频结束后播放下一个随机视频
-        videoPlayer.addEventListener('ended', playRandomVideo);
-        
-        // 页面加载后自动全屏并播放
-        window.addEventListener('load', function() {
-            playRandomVideo();
-            
-            // 尝试进入全屏
-            videoPlayer.addEventListener('canplay', function() {
-                if (videoPlayer.requestFullscreen) {
-                    videoPlayer.requestFullscreen();
-                } else if (videoPlayer.webkitRequestFullscreen) {
-                    videoPlayer.webkitRequestFullscreen();
-                } else if (videoPlayer.msRequestFullscreen) {
-                    videoPlayer.msRequestFullscreen();
-                }
-            }, { once: true });
-        });
-        
-        // 点击视频时进入全屏（如果自动全屏失败）
-        videoPlayer.addEventListener('click', function() {
-            if (!document.fullscreenElement) {
-                if (videoPlayer.requestFullscreen) {
-                    videoPlayer.requestFullscreen();
-                } else if (videoPlayer.webkitRequestFullscreen) {
-                    videoPlayer.webkitRequestFullscreen();
-                } else if (videoPlayer.msRequestFullscreen) {
-                    videoPlayer.msRequestFullscreen();
-                }
-            }
-        });
-    </script>
-</body>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Welcome to Xiaomei Page</h1>
+    </div>
+
+    <table class="main-container">
+      <tr>
+        <td class="sidebar">
+          <div align="center">
+            <img
+              src="./misaka.jpg"
+              width="160"
+            />
+          </div>
+          <div class="sidebar-header">Xiaomei</div>
+        </td>
+
+        <td class="content">
+          <div class="XX-box">
+            <div class="XX-title">Hi there! I'm Xiaomei</div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
